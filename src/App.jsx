@@ -1,12 +1,13 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import {
   Code2,
   ExternalLink,
+  Fish,
   Gamepad2,
   GitBranch,
   Mail,
   MapPin,
-  Sparkles,
+  MousePointer2,
   Terminal,
   Users,
 } from 'lucide-react'
@@ -25,13 +26,6 @@ const skillGroups = [
     title: 'Workflow',
     items: ['Git & GitHub', 'Collaboration', 'Rapid Iteration', 'Debugging', 'Playtest Loop'],
   },
-]
-
-const trackOptions = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'community', label: 'Community Jam' },
-  { id: 'personal', label: 'Personal Lab' },
-  { id: 'studio', label: 'Studio Playables' },
 ]
 
 const projects = [
@@ -107,22 +101,37 @@ const metrics = [
   { label: 'Core Stack', value: 'Unity + C#' },
 ]
 
-function App() {
-  const [activeTrack, setActiveTrack] = useState('all')
-  const [profileUnavailable, setProfileUnavailable] = useState(false)
+const projectSections = [
+  {
+    id: 'community',
+    title: 'Community Game Jam',
+    subtitle: 'Các dự án jam mình hoàn thành cùng cộng đồng, deadline ngắn nhưng nhiều cảm xúc.',
+    items: projects.filter((project) => project.track === 'community'),
+  },
+  {
+    id: 'personal',
+    title: 'Personal Lab',
+    subtitle: 'Prototype và project học tập để thử nghiệm cơ chế, tool, code structure.',
+    items: projects.filter((project) => project.track === 'personal'),
+  },
+  {
+    id: 'studio',
+    title: 'Studio Playables',
+    subtitle: 'Khu vực dành cho playable projects tại công ty khi có sản phẩm được phép public.',
+    items: projects.filter((project) => project.track === 'studio'),
+  },
+]
 
-  const filteredProjects = useMemo(() => {
-    if (activeTrack === 'all') {
-      return projects
-    }
-    return projects.filter((project) => project.track === activeTrack)
-  }, [activeTrack])
+const sharkTeeth = Array.from({ length: 8 }, (_, index) => index)
+
+function App() {
+  const [profileUnavailable, setProfileUnavailable] = useState(false)
 
   return (
     <div className="portfolio" id="top">
       <header className="site-header">
         <a className="brand" href="#top">
-          <Gamepad2 size={16} />
+          <Fish size={16} />
           <span>Xuân Portfolio</span>
         </a>
         <nav className="site-nav">
@@ -178,9 +187,22 @@ function App() {
             )}
             {profileUnavailable && (
               <div className="profile-fallback">
-                <Sparkles size={22} />
-                <p>Profile Photo Coming Soon</p>
-                <span>Personal portrait will appear here.</span>
+                <div className="shark-graphic" aria-hidden="true">
+                  <div className="jaw jaw-top">
+                    {sharkTeeth.map((tooth) => (
+                      <span key={`top-${tooth}`} />
+                    ))}
+                  </div>
+                  <MousePointer2 className="cursor-graphic" size={46} />
+                  <Fish className="fish-graphic" size={54} />
+                  <div className="jaw jaw-bottom">
+                    {sharkTeeth.map((tooth) => (
+                      <span key={`bottom-${tooth}`} />
+                    ))}
+                  </div>
+                </div>
+                <p>Portrait Coming Soon</p>
+                <span>Ảnh chân dung có thể thay vào khu này sau.</span>
               </div>
             )}
           </div>
@@ -228,64 +250,71 @@ function App() {
                 Playable Projects
               </h2>
               <p className="section-text">
-                Layout này đã sẵn sàng cho số lượng dự án lớn hơn, bao gồm cả playable projects tại công ty.
+                Những playable, prototype và game jam mình muốn giới thiệu.
               </p>
-            </div>
-            <div className="track-tabs" role="tablist" aria-label="Project tracks">
-              {trackOptions.map((track) => (
-                <button
-                  key={track.id}
-                  type="button"
-                  className={`track-tab${activeTrack === track.id ? ' active' : ''}`}
-                  onClick={() => setActiveTrack(track.id)}
-                >
-                  {track.label}
-                </button>
-              ))}
             </div>
           </div>
 
-          <div className="projects-grid">
-            {filteredProjects.map((project) => (
-              <article key={project.title} className="project-card">
-                {project.image && (
-                  <div className="project-image-wrap">
-                    <img className="project-image" src={project.image} alt={project.title} />
-                  </div>
-                )}
-                <div className="project-head">
+          <div className="project-lanes">
+            {projectSections.map((section) => (
+              <section className="project-lane" key={section.id}>
+                <div className="project-lane-head">
                   <div>
-                    <h3>{project.title}</h3>
-                    <p className="project-meta">
-                      <span>{project.role}</span>
-                      <span>{project.year}</span>
-                    </p>
+                    <h3>{section.title}</h3>
+                    <p>{section.subtitle}</p>
                   </div>
-                  {project.links[0] && (
-                    <a href={project.links[0].url} target="_blank" rel="noopener noreferrer" aria-label={project.title}>
-                      <ExternalLink size={18} />
-                    </a>
-                  )}
+                  <span>{section.items.length} projects</span>
                 </div>
-                <p className="project-desc">{project.desc}</p>
-                {!!project.links.length && (
-                  <div className="project-links">
-                    {project.links.map((link) => (
-                      <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-                {project.note && <p className="project-note">{project.note}</p>}
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="project-tag">
-                      {tag}
-                    </span>
+
+                <div className="project-scroll" aria-label={section.title}>
+                  {section.items.map((project) => (
+                    <article key={project.title} className="project-card">
+                      {project.image && (
+                        <div className="project-image-wrap">
+                          <img className="project-image" src={project.image} alt={project.title} />
+                        </div>
+                      )}
+                      <div className="project-head">
+                        <div>
+                          <h3>{project.title}</h3>
+                          <p className="project-meta">
+                            <span>{project.role}</span>
+                            <span>{project.year}</span>
+                          </p>
+                        </div>
+                        {project.links[0] && (
+                          <a
+                            href={project.links[0].url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={project.title}
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </div>
+                      <p className="project-desc">{project.desc}</p>
+                      {!!project.links.length && (
+                        <div className="project-links">
+                          {project.links.map((link) => (
+                            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                      {project.note && <p className="project-note">{project.note}</p>}
+                      <div className="project-tags">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="project-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
                   ))}
                 </div>
-              </article>
+              </section>
             ))}
           </div>
         </section>
