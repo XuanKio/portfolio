@@ -81,6 +81,7 @@ function App() {
       title: 'Ngôn',
       desc: 'Psychological Horror Puzzle RPG with branching story paths and multiple endings centered around word-based puzzles.',
       tags: ['Unity', 'C#', 'Puzzle RPG', 'Game Jam'],
+      image: '/images/ngon.png',
       link: 'https://xuankio.itch.io/ngon',
       article: 'https://www.facebook.com/share/1JFD5ULEfZ/',
       note: 'Lần thứ hai tham gia một cuộc thi lớn, cảm xúc của mình vẫn hào hứng như những ngày đầu làm game. Mình đã dành trọn tâm huyết để tạo ra một trải nghiệm mới, và chưa bao giờ thấy vui đến vậy khi được nhiều người chơi, nhận phản hồi, rồi tiếp thêm động lực để theo đuổi con đường này.'
