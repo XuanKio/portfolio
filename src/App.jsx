@@ -179,11 +179,27 @@ function App() {
 
           <div className="hero-visual">
             {!profileUnavailable && (
-              <img
-                src="/images/profile.jpg"
-                alt="Hoàng Xuân Cường"
-                onError={() => setProfileUnavailable(true)}
-              />
+              <>
+                <img
+                  src="/images/profile.jpg"
+                  alt="Hoàng Xuân Cường"
+                  onError={() => setProfileUnavailable(true)}
+                />
+                <div className="portrait-overlay" aria-hidden="true">
+                  <div className="jaw-mini jaw-mini-top">
+                    {sharkTeeth.map((tooth) => (
+                      <span key={`portrait-top-${tooth}`} />
+                    ))}
+                  </div>
+                  <MousePointer2 className="portrait-cursor" size={36} />
+                  <Fish className="portrait-fish" size={38} />
+                  <div className="jaw-mini jaw-mini-bottom">
+                    {sharkTeeth.map((tooth) => (
+                      <span key={`portrait-bottom-${tooth}`} />
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
             {profileUnavailable && (
               <div className="profile-fallback">
