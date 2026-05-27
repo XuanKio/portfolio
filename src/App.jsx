@@ -63,39 +63,44 @@ function Icon({ name, size = 20 }) {
 function App() {
   const skills = [
     'Unity', 'C#', 'Gameplay Programming', 'OOP',
-    'Design Patterns', 'Optimization', 'Level Design', 'Lua'
+    'JavaScript', 'TypeScript', 'React', 'Vite',
+    'Java', 'Git & GitHub'
   ]
 
   const projects = [
     {
-      title: 'Game Jam VN 36H',
-      desc: 'Puzzle platformer game developed in 36 hours with a team of 4. Won top 10 at Vietnam Game Jam.',
-      tags: ['Unity', 'C#', 'Team Project'],
-      link: '#'
+      title: 'Always Trust The Sister',
+      desc: 'Community game jam project with a narrative puzzle direction, built under tight deadline pressure.',
+      tags: ['Unity', 'C#', 'Game Jam', 'Team Project'],
+      link: 'https://drive.google.com/drive/folders/19IFzS2oFCCgwpaqfnS98ZTOYsuN41Rpm',
+      article: 'https://www.facebook.com/share/1c2b658cMM/',
+      note: 'Đây là lần đầu mình hoàn thành trọn vẹn một game hoàn chỉnh từ ý tưởng tới bản build cuối trong khuôn khổ cuộc thi. Khoảnh khắc dự án chạy ổn định và có người chơi thật, mình đã rất xúc động vì cảm nhận rõ đam mê làm game của bản thân đang dần trở thành điều nghiêm túc.'
     },
     {
-      title: 'Pixel Art Tool',
-      desc: 'A lightweight pixel art editor extension built with Lua for Aseprite. Supports layers and animation.',
-      tags: ['Lua', 'Aseprite', 'Tool'],
-      link: '#'
+      title: 'Ngôn',
+      desc: 'Psychological Horror Puzzle RPG with branching story paths and multiple endings centered around word-based puzzles.',
+      tags: ['Unity', 'C#', 'Puzzle RPG', 'Game Jam'],
+      link: 'https://xuankio.itch.io/ngon',
+      article: 'https://www.facebook.com/share/1JFD5ULEfZ/',
+      note: 'Lần thứ hai tham gia một cuộc thi lớn, cảm xúc của mình vẫn hào hứng như những ngày đầu làm game. Mình đã dành trọn tâm huyết để tạo ra một trải nghiệm mới, và chưa bao giờ thấy vui đến vậy khi được nhiều người chơi, nhận phản hồi, rồi tiếp thêm động lực để theo đuổi con đường này.'
     },
     {
-      title: 'Quiet Lake',
-      desc: 'Cozy fishing simulation game with dynamic weather system and relaxing atmosphere.',
-      tags: ['Unity', 'C#', 'Solo Project'],
-      link: '#'
+      title: 'Draw-To-Save',
+      desc: 'Prototype game concept focused on player interaction through drawing-based mechanics.',
+      tags: ['TypeScript', 'Game Prototype'],
+      link: 'https://github.com/XuanKio/Draw-To-Save'
     },
     {
-      title: 'Coin Taker',
-      desc: 'Fast-paced 2D platformer with tight controls and speedrun mechanics.',
-      tags: ['Unity', 'C#', 'Solo Project'],
-      link: '#'
+      title: 'FlappyBird Project Learn 1',
+      desc: 'Early learning project to build game-loop thinking, collision handling, and tuning in C#.',
+      tags: ['C#', 'Unity', 'Learning Project'],
+      link: 'https://github.com/XuanKio/FlappyBird-ProjectLearn-1'
     },
     {
-      title: 'War 2077',
-      desc: 'Top-down action shooter set in cyberpunk future. Features procedural enemy spawning.',
-      tags: ['Unity', 'C#', 'Solo Project'],
-      link: '#'
+      title: 'CoWord Cafe',
+      desc: 'JavaScript project demonstrating frontend structure and practical coding workflow on GitHub.',
+      tags: ['JavaScript', 'Frontend'],
+      link: 'https://github.com/XuanKio/CoWord-Cafe'
     }
   ]
 
@@ -110,10 +115,10 @@ function App() {
           </span>
           <h1>Hoàng Xuân Cường</h1>
           <p className="tagline">
-            Developer passionate about crafting engaging experiences
+            Gameplay-focused developer building meaningful experiences through code and creative systems
           </p>
           <div className="social-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/XuanKio" target="_blank" rel="noopener noreferrer">
               <Icon name="github" size={20} />
               GitHub
             </a>
@@ -133,10 +138,10 @@ function App() {
       <section className="about-section">
         <h2><Icon name="terminal" size={24} /> About Me</h2>
         <p>
-          I'm a second-year IT student at Phuong Dong University with a strong focus on
-          Unity and C# development. I have experience working on both solo projects and
-          team collaborations, including participation in Vietnam Game Jam. I'm constantly
-          learning and improving my skills in game design, programming patterns, and optimization.
+          Mình tập trung chính vào Unity và C# cho gameplay programming, đồng thời duy trì
+          các dự án JavaScript/TypeScript trên GitHub để mở rộng khả năng xây dựng sản phẩm.
+          Mục tiêu của mình là làm ra những game có cảm xúc, có bản sắc riêng, và để lại
+          trải nghiệm đáng nhớ cho người chơi sau khi màn hình đã tắt.
         </p>
       </section>
 
@@ -163,6 +168,17 @@ function App() {
                 </a>
               </div>
               <p>{project.desc}</p>
+              <div className="project-links">
+                <a href={project.link} target="_blank" rel="noopener noreferrer">
+                  Project Link
+                </a>
+                {project.article && (
+                  <a href={project.article} target="_blank" rel="noopener noreferrer">
+                    Bài Viết Cuộc Thi
+                  </a>
+                )}
+              </div>
+              {project.note && <p className="project-note">{project.note}</p>}
               <div className="project-tags">
                 {project.tags.map(tag => (
                   <span key={tag} className="project-tag">{tag}</span>

@@ -203,6 +203,37 @@ section h2 svg {
   margin-bottom: 14px;
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.project-links a {
+  color: var(--accent-light);
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.2s;
+}
+
+.project-links a:hover {
+  border-color: var(--accent-light);
+}
+
+.project-note {
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  color: #d6d6e4;
+  font-size: 13px;
+  line-height: 1.7;
+  font-style: italic;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
