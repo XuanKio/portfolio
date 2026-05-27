@@ -96,7 +96,7 @@ const projects = [
 ]
 
 const metrics = [
-  { label: 'Playable Projects', value: '6+' },
+  { label: 'Projects', value: '6+' },
   { label: 'Community Game Jams', value: '2' },
   { label: 'Core Stack', value: 'Unity + C#' },
 ]
@@ -123,6 +123,7 @@ const projectSections = [
 ]
 
 const sharkTeeth = Array.from({ length: 8 }, (_, index) => index)
+const autoMarqueeSections = new Set(['community'])
 
 function App() {
   const [profileUnavailable, setProfileUnavailable] = useState(false)
@@ -263,7 +264,7 @@ function App() {
             <div>
               <h2>
                 <Gamepad2 size={22} />
-                Playable Projects
+                Projects
               </h2>
               <p className="section-text">
                 Những playable, prototype và game jam mình muốn giới thiệu.
@@ -282,54 +283,107 @@ function App() {
                   <span>{section.items.length} projects</span>
                 </div>
 
-                <div className="project-scroll" aria-label={section.title}>
-                  {section.items.map((project) => (
-                    <article key={project.title} className="project-card">
-                      {project.image && (
-                        <div className="project-image-wrap">
-                          <img className="project-image" src={project.image} alt={project.title} />
-                        </div>
-                      )}
-                      <div className="project-head">
-                        <div>
-                          <h3>{project.title}</h3>
-                          <p className="project-meta">
-                            <span>{project.role}</span>
-                            <span>{project.year}</span>
-                          </p>
-                        </div>
-                        {project.links[0] && (
-                          <a
-                            href={project.links[0].url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={project.title}
-                          >
-                            <ExternalLink size={18} />
-                          </a>
+                {autoMarqueeSections.has(section.id) ? (
+                  <div className="project-marquee" aria-label={`${section.title} auto scroll`}>
+                    <div className="project-marquee-track">
+                      {[...section.items, ...section.items].map((project, index) => (
+                        <article key={`${project.title}-${index}`} className="project-card">
+                          {project.image && (
+                            <div className="project-image-wrap">
+                              <img className="project-image" src={project.image} alt={project.title} />
+                            </div>
+                          )}
+                          <div className="project-head">
+                            <div>
+                              <h3>{project.title}</h3>
+                              <p className="project-meta">
+                                <span>{project.role}</span>
+                                <span>{project.year}</span>
+                              </p>
+                            </div>
+                            {project.links[0] && (
+                              <a
+                                href={project.links[0].url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={project.title}
+                              >
+                                <ExternalLink size={18} />
+                              </a>
+                            )}
+                          </div>
+                          <p className="project-desc">{project.desc}</p>
+                          {!!project.links.length && (
+                            <div className="project-links">
+                              {project.links.map((link) => (
+                                <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
+                                  {link.label}
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                          {project.note && <p className="project-note">{project.note}</p>}
+                          <div className="project-tags">
+                            {project.tags.map((tag) => (
+                              <span key={tag} className="project-tag">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="project-scroll" aria-label={section.title}>
+                    {section.items.map((project) => (
+                      <article key={project.title} className="project-card">
+                        {project.image && (
+                          <div className="project-image-wrap">
+                            <img className="project-image" src={project.image} alt={project.title} />
+                          </div>
                         )}
-                      </div>
-                      <p className="project-desc">{project.desc}</p>
-                      {!!project.links.length && (
-                        <div className="project-links">
-                          {project.links.map((link) => (
-                            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
-                              {link.label}
+                        <div className="project-head">
+                          <div>
+                            <h3>{project.title}</h3>
+                            <p className="project-meta">
+                              <span>{project.role}</span>
+                              <span>{project.year}</span>
+                            </p>
+                          </div>
+                          {project.links[0] && (
+                            <a
+                              href={project.links[0].url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={project.title}
+                            >
+                              <ExternalLink size={18} />
                             </a>
+                          )}
+                        </div>
+                        <p className="project-desc">{project.desc}</p>
+                        {!!project.links.length && (
+                          <div className="project-links">
+                            {project.links.map((link) => (
+                              <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
+                                {link.label}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                        {project.note && <p className="project-note">{project.note}</p>}
+                        <div className="project-tags">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="project-tag">
+                              {tag}
+                            </span>
                           ))}
                         </div>
-                      )}
-                      {project.note && <p className="project-note">{project.note}</p>}
-                      <div className="project-tags">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="project-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </article>
-                  ))}
-                </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
               </section>
             ))}
           </div>
