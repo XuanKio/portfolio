@@ -72,6 +72,7 @@ function App() {
       title: 'Always Trust The Sister',
       desc: 'Community game jam project with a narrative puzzle direction, built under tight deadline pressure.',
       tags: ['Unity', 'C#', 'Game Jam', 'Team Project'],
+      image: '/images/always-trust-the-sister.png',
       link: 'https://drive.google.com/drive/folders/19IFzS2oFCCgwpaqfnS98ZTOYsuN41Rpm',
       article: 'https://www.facebook.com/share/1c2b658cMM/',
       note: 'Đây là lần đầu mình hoàn thành trọn vẹn một game hoàn chỉnh từ ý tưởng tới bản build cuối trong khuôn khổ cuộc thi. Khoảnh khắc dự án chạy ổn định và có người chơi thật, mình đã rất xúc động vì cảm nhận rõ đam mê làm game của bản thân đang dần trở thành điều nghiêm túc.'
@@ -161,6 +162,13 @@ function App() {
         <div className="projects-grid">
           {projects.map(project => (
             <div key={project.title} className="project-card">
+              {project.image && (
+                <img
+                  className="project-image"
+                  src={project.image}
+                  alt={project.title}
+                />
+              )}
               <div className="project-header">
                 <h3>{project.title}</h3>
                 <a href={project.link} target="_blank" rel="noopener noreferrer">

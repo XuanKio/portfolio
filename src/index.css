@@ -175,6 +175,16 @@ section h2 svg {
   box-shadow: var(--shadow);
 }
 
+.project-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  display: block;
+  object-fit: cover;
+}
+
 .project-header {
   display: flex;
   align-items: center;
