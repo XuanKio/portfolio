@@ -108,9 +108,9 @@ function App() {
             <Icon name="gamepad2" size={16} />
             UNITY GAMEPLAY PROGRAMMER
           </span>
-          <h1>Phạm Quang Thái</h1>
+          <h1>Hoàng Xuân Cường</h1>
           <p className="tagline">
-            Second-year IT student passionate about crafting engaging gameplay experiences
+            Developer passionate about crafting engaging experiences
           </p>
           <div className="social-links">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer">
@@ -121,7 +121,7 @@ function App() {
               <Icon name="linkedin" size={20} />
               LinkedIn
             </a>
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:pt7955@gmail.com">
               <Icon name="mail" size={20} />
               Email
             </a>
@@ -178,9 +178,9 @@ function App() {
         <h2>Get In Touch</h2>
         <p>I'm open for internships and collaboration opportunities!</p>
         <div className="contact-info">
-          <a href="mailto:your.email@example.com">
+          <a href="mailto:pt7955@gmail.com">
             <Icon name="mail" size={18} />
-            your.email@example.com
+            pt7955@gmail.com
           </a>
           <span>
             <Icon name="mapPin" size={18} />
@@ -190,7 +190,7 @@ function App() {
       </section>
 
       <footer>
-        <p>© 2025 Phạm Quang Thái. Built with React + Vite.</p>
+        <p>© 2025 Hoàng Xuân Cường. Built with React + Vite.</p>
       </footer>
     </div>
   )
